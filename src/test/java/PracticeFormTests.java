@@ -27,9 +27,7 @@ public class PracticeFormTests {
         $("#genterWrapper").$(byText("Female")).click();
         $("#userNumber").setValue("9032223344");
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").click();
         $(".react-datepicker__month-select").selectOption("April");
-        $(".react-datepicker__year-select").click();
         $(".react-datepicker__year-select").selectOption("1990");
         $(".react-datepicker__day--002").click();
         $("#subjectsInput").setValue("Phy").pressEnter();
@@ -51,6 +49,4 @@ public class PracticeFormTests {
         $(".table").$(byText("Address")).sibling(0).shouldHave(text("Noname str."));
         $(".table").$(byText("State and City")).sibling(0).shouldHave(text("Rajasthan Jaipur"));
     }
-
-
 }
