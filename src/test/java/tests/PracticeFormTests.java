@@ -3,12 +3,6 @@ package tests;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.$;
-
 public class PracticeFormTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
@@ -17,16 +11,16 @@ public class PracticeFormTests extends TestBase {
     void fillAllFieldsFormTest() {
         registrationPage.openPage()
                 .removeBanners()
-                .fillTextField(registrationPage.firstNameInput, "Myname")
-                .fillTextField(registrationPage.lastNameInput, "Mylastname")
-                .fillTextField(registrationPage.userEmailInput, "someemail@gmail.com")
+                .setFirstName("Myname")
+                .setLastName("Mylastname")
+                .setEmail("someemail@gmail.com")
                 .setGender("Female")
-                .fillTextField(registrationPage.userNumberInput, "9032223344")
+                .setMobileNumber("9032223344")
                 .setDateOfBirth("02", "April", "2000")
                 .setSubject("Phy")
                 .setHobbies("Sports")
                 .uploadPictures("cat.jpg")
-                .fillTextField(registrationPage.currentAddressInput, "Noname str.")
+                .setCurrentAddress("Noname str.")
                 .setStateAndCity("Rajasthan", "Jaipur")
                 .submitForm();
 
@@ -47,10 +41,10 @@ public class PracticeFormTests extends TestBase {
     void fillOnlyRequiredFieldsFormTest() {
         registrationPage.openPage()
                 .removeBanners()
-                .fillTextField(registrationPage.firstNameInput, "Myname")
-                .fillTextField(registrationPage.lastNameInput, "Mylastname")
+                .setFirstName("Myname")
+                .setLastName("Mylastname")
                 .setGender("Female")
-                .fillTextField(registrationPage.userNumberInput, "9032223344")
+                .setMobileNumber("9032223344")
                 .setDateOfBirth("02", "April", "2000")
                 .submitForm();
 
@@ -65,14 +59,13 @@ public class PracticeFormTests extends TestBase {
     void negativeFillFormTest() {
         registrationPage.openPage()
                 .removeBanners()
-                .fillTextField(registrationPage.firstNameInput, "Myname")
-                .fillTextField(registrationPage.lastNameInput, "Mylastname")
+                .setFirstName("Myname")
+                .setLastName("Mylastname")
                 .setGender("Female")
-                .fillTextField(registrationPage.userNumberInput, "90322233")
+                .setMobileNumber("90322233")
                 .setDateOfBirth("02", "April", "2000")
                 .submitForm();
 
         registrationPage.verifyNoSubmittedDialogAppears();
     }
-
 }

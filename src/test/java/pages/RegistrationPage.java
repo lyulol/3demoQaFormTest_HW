@@ -2,7 +2,6 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -44,14 +43,32 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage fillTextField(SelenideElement selector, String value) {
-        $(selector).setValue(value);
+    public RegistrationPage setFirstName(String value) {
+        firstNameInput.setValue(value);
+
+        return this;
+    }
+
+    public RegistrationPage setLastName(String value) {
+        lastNameInput.setValue(value);
+
+        return this;
+    }
+
+    public RegistrationPage setEmail(String value) {
+        userEmailInput.setValue(value);
 
         return this;
     }
 
     public RegistrationPage setGender(String value) {
         genderRadioButtons.$(byText(value)).click();
+
+        return this;
+    }
+
+    public RegistrationPage setMobileNumber(String value) {
+        userNumberInput.setValue(value);
 
         return this;
     }
@@ -77,6 +94,12 @@ public class RegistrationPage {
 
     public RegistrationPage uploadPictures(String path) {
         uploadPictureLocator.uploadFromClasspath(path);
+
+        return this;
+    }
+
+    public RegistrationPage setCurrentAddress(String value) {
+        currentAddressInput.setValue(value);
 
         return this;
     }
