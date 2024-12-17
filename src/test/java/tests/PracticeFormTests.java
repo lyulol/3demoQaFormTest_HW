@@ -2,68 +2,70 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import utils.TestData;
 
 public class PracticeFormTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
+    TestData testData = new TestData();
 
     @Test
     void fillAllFieldsFormTest() {
         registrationPage.openPage()
                 .removeBanners()
-                .setFirstName("Myname")
-                .setLastName("Mylastname")
-                .setEmail("someemail@gmail.com")
-                .setGender("Female")
-                .setMobileNumber("9032223344")
-                .setDateOfBirth("02", "April", "2000")
-                .setSubject("Phy")
-                .setHobbies("Sports")
-                .uploadPictures("cat.jpg")
-                .setCurrentAddress("Noname str.")
-                .setStateAndCity("Rajasthan", "Jaipur")
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setEmail(testData.email)
+                .setGender(testData.gender)
+                .setMobileNumber(testData.mobileNumber)
+                .setDateOfBirth(testData.dayOfBirth, testData.monthOfBirth, testData.yearOfBirth)
+                .setSubject(testData.subject)
+                .setHobbies(testData.hobbies)
+                .uploadPictures(testData.pictures)
+                .setCurrentAddress(testData.address)
+                .setStateAndCity(testData.state, testData.city)
                 .submitForm();
 
         registrationPage.verifySubmittedDialogAppears()
-                .verifyResults("Student Name", "Myname Mylastname")
-                .verifyResults("Student Email", "someemail@gmail.com")
-                .verifyResults("Gender", "Female")
-                .verifyResults("Mobile", "9032223344")
-                .verifyResults("Date of Birth", "02 April,2000")
-                .verifyResults("Subjects", "Physics")
-                .verifyResults("Hobbies", "Sports")
-                .verifyResults("Picture", "cat.jpg")
-                .verifyResults("Address", "Noname str.")
-                .verifyResults("State and City", "Rajasthan Jaipur");
+                .verifyResults("Student Name", testData.firstName + " " + testData.lastName)
+                .verifyResults("Student Email", testData.email)
+                .verifyResults("Gender", testData.gender)
+                .verifyResults("Mobile", testData.mobileNumber)
+                .verifyResults("Date of Birth", testData.dayOfBirth + " " + testData.monthOfBirth + "," + testData.yearOfBirth)
+                .verifyResults("Subjects", testData.subject)
+                .verifyResults("Hobbies", testData.hobbies)
+                .verifyResults("Picture", testData.pictures)
+                .verifyResults("Address", testData.address)
+                .verifyResults("State and City", testData.state + " " + testData.city);
     }
 
     @Test
     void fillOnlyRequiredFieldsFormTest() {
         registrationPage.openPage()
                 .removeBanners()
-                .setFirstName("Myname")
-                .setLastName("Mylastname")
-                .setGender("Female")
-                .setMobileNumber("9032223344")
-                .setDateOfBirth("02", "April", "2000")
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setGender(testData.gender)
+                .setMobileNumber(testData.mobileNumber)
+                .setDateOfBirth(testData.dayOfBirth, testData.monthOfBirth, testData.yearOfBirth)
                 .submitForm();
 
         registrationPage.verifySubmittedDialogAppears()
-                .verifyResults("Student Name", "Myname Mylastname")
-                .verifyResults("Gender", "Female")
-                .verifyResults("Mobile", "9032223344")
-                .verifyResults("Date of Birth", "02 April,2000");
+                .verifyResults("Student Name", testData.firstName + " " + testData.lastName)
+                .verifyResults("Gender", testData.gender)
+                .verifyResults("Mobile", testData.mobileNumber)
+                .verifyResults("Date of Birth", testData.dayOfBirth + " " + testData.monthOfBirth + "," + testData.yearOfBirth);
     }
 
     @Test
     void negativeFillFormTest() {
         registrationPage.openPage()
                 .removeBanners()
-                .setFirstName("Myname")
-                .setLastName("Mylastname")
-                .setGender("Female")
-                .setMobileNumber("90322233")
-                .setDateOfBirth("02", "April", "2000")
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setGender(testData.gender)
+                .setMobileNumber(" ")
+                .setDateOfBirth(testData.dayOfBirth, testData.monthOfBirth, testData.yearOfBirth)
                 .submitForm();
 
         registrationPage.verifyNoSubmittedDialogAppears();
