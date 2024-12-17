@@ -20,8 +20,8 @@ public class TestData {
     public String yearOfBirth = String.format("%s", faker.number().numberBetween(1924, 2010));
     public String subject = faker.options().option("Accounting", "Arts", "Biology", "Chemistry", "Civics", "Commerce", "Computer Science", "Economics", "English",
             "Hindi", "History", "Maths", "Physics", "Social Studies");
-    public String hobbies = faker.options().option("Sports", "Reading", "Music");
-    public String pictures = faker.options().option("cat.jpg", "cat2.jpg");
+    public String hobby = faker.options().option("Sports", "Reading", "Music");
+    public String picture = faker.options().option("cat.jpg", "cat2.jpg");
     public String address = faker.address().fullAddress();
     public String state = faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
     public String city = getRandomCity(state);

@@ -20,8 +20,8 @@ public class PracticeFormTests extends TestBase {
                 .setMobileNumber(testData.mobileNumber)
                 .setDateOfBirth(testData.dayOfBirth, testData.monthOfBirth, testData.yearOfBirth)
                 .setSubject(testData.subject)
-                .setHobbies(testData.hobbies)
-                .uploadPictures(testData.pictures)
+                .setHobbies(testData.hobby)
+                .uploadPicture(testData.picture)
                 .setCurrentAddress(testData.address)
                 .setStateAndCity(testData.state, testData.city)
                 .submitForm();
@@ -33,8 +33,8 @@ public class PracticeFormTests extends TestBase {
                 .verifyResults("Mobile", testData.mobileNumber)
                 .verifyResults("Date of Birth", testData.dayOfBirth + " " + testData.monthOfBirth + "," + testData.yearOfBirth)
                 .verifyResults("Subjects", testData.subject)
-                .verifyResults("Hobbies", testData.hobbies)
-                .verifyResults("Picture", testData.pictures)
+                .verifyResults("Hobbies", testData.hobby)
+                .verifyResults("Picture", testData.picture)
                 .verifyResults("Address", testData.address)
                 .verifyResults("State and City", testData.state + " " + testData.city);
     }
